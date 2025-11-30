@@ -1,0 +1,72 @@
+               
+              INTERVIEW AGENT ARCHITECTURE DIAGRAM
+
+                ┌─────────────────────────────┐
+                │      Start Interview        │
+                └──────────────┬──────────────┘
+                               │
+                               ▼
+                 ┌──────────────────────────┐
+                 │ Select Topic + Difficulty│
+                 └──────────────┬───────────┘
+                                │
+                                ▼
+                 ┌──────────────────────────┐
+                 │  API: /api/interview     │
+                 │  Action: "generate"      │
+                 └──────────────┬───────────┘
+                                │
+                                ▼
+                 ┌──────────────────────────┐
+                 │  Gemini Generates Q      │
+                 └──────────────┬───────────┘
+                                │
+                                ▼
+                 ┌──────────────────────────┐
+                 │  Display Question UI     │
+                 │  • Timer                 │
+                 │  • Text Input Box        │
+                 │  • Voice Input Option    │
+                 └──────────────┬───────────┘
+                                │
+                                ▼
+                 ┌──────────────────────────┐
+                 │  User Types Answer       │
+                 └──────────────┬───────────┘
+                                │
+                                ▼
+                 ┌──────────────────────────┐
+                 │  Submit Answer           │
+                 │ API: /api/interview      │
+                 │ Action: "evaluate"       │
+                 └──────────────┬───────────┘
+                                │
+                                ▼
+                 ┌──────────────────────────┐
+                 │ Gemini Evaluates Answer  │
+                 │ • Rating (1–10)          │
+                 │ • Feedback               │
+                 │ • Improvements           │
+                 └──────────────┬───────────┘
+                                │
+                                ▼
+                 ┌──────────────────────────┐
+                 │ Display Result           │
+                 │ • Score                  │
+                 │ • Strengths & Weaknesses │
+                 │ • Suggested Fixes        │
+                 └──────────────┬───────────┘
+                                │
+                                ▼
+                 ┌──────────────────────────┐
+                 │ Save to History (async)  │
+                 │ /api/history             │
+                 └──────────────┬───────────┘
+                                │
+                                ▼
+                 ┌──────────────────────────┐
+                 │ Next Action              │
+                 │ • Next Question          │
+                 │ • End Session            │
+                 │ • View Analytics         │
+                 └──────────────────────────┘
